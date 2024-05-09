@@ -1,0 +1,9 @@
+name: MapJammer
+version: '${project.version}'
+main: me.vaan.mapjammer.MapJammer
+api-version: '1.20'
+depend:
+  - Slimefun
+softdepend:
+  - squaremap
+  - dynmap

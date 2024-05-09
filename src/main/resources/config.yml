@@ -1,0 +1,9 @@
+# How often to check for MapJammers inside inventories in seconds
+time-frame: 10
+# Energy drained from jammers every (time-frame) seconds
+energy-cost: 1
+# Will player below underground-height be hidden from dynmap,
+# even if they don't have a jammer on them?
+underground-hide: true
+# Player below this will be hidden if underground-hide is true
+underground-y: 0
