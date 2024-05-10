@@ -2,7 +2,7 @@
 time-frame: 10
 # Energy drained from jammers every (time-frame) seconds
 energy-cost: 1
-# Will player below underground-height be hidden from dynmap,
+# Will player below underground-y be hidden from dynmap,
 # even if they don't have a jammer on them?
 underground-hide: true
 # Player below this will be hidden if underground-hide is true

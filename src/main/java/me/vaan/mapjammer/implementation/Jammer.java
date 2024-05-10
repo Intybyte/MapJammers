@@ -14,7 +14,7 @@ public class Jammer extends SlimefunItem implements Rechargeable {
     private final float capacity;
 
     @ParametersAreNonnullByDefault
-    public Jammer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, float capacity, String... items) {
+    public Jammer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, float capacity) {
         super(itemGroup, item, recipeType, recipe);
         this.capacity = capacity;
     }
@@ -22,12 +22,6 @@ public class Jammer extends SlimefunItem implements Rechargeable {
     @Override
     public float getMaxItemCharge(ItemStack item) {
         return capacity;
-    }
-
-
-    @Override
-    public void preRegister() {
-        super.preRegister();
     }
 
 }

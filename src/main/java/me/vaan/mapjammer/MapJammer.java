@@ -62,7 +62,7 @@ public final class MapJammer extends JavaPlugin implements SlimefunAddon {
         }
 
         Plugin dynmap = pm.getPlugin("dynmap");
-        if (dynmap != null) {
+        if (dynmap != null && dynmap.isEnabled()) {
             DynmapAPI dynmapAPI = (DynmapAPI) dynmap;
 
             ShowHideInterface showHideInterface = new ShowHideInterface() {

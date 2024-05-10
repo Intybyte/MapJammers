@@ -2,28 +2,24 @@ package me.vaan.mapjammer.runnables;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
-import io.github.thebusybiscuit.slimefun4.utils.ChargeUtils;
-import me.vaan.mapjammer.implementation.Items;
 import me.vaan.mapjammer.implementation.Jammer;
 import me.vaan.mapjammer.util.ConfigStorage;
 import me.vaan.mapjammer.util.ShowHideInterface;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
-import xyz.jpenilla.squaremap.api.PlayerManager;
-import xyz.jpenilla.squaremap.api.Squaremap;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.UUID;
 
 //Checks if players have the jammer and hides then if yes
 public class CheckPlayers extends BukkitRunnable {
 
-    private ShowHideInterface showHideInterface;
-    private HashMap<String, Integer> playerMap = new HashMap<>();
+    private final ShowHideInterface showHideInterface;
+    private final HashMap<String, Integer> playerMap = new HashMap<>();
 
     public CheckPlayers(ShowHideInterface showHideInterface) {
         this.showHideInterface = showHideInterface;
@@ -38,7 +34,7 @@ public class CheckPlayers extends BukkitRunnable {
             if (p == null)
                 continue;
 
-            //hide player below 0
+            //hide player below underground-y
             if (ConfigStorage.UNDERGROUD_HIDE && p.getLocation().getBlockY() < ConfigStorage.UNDERGROUND_Y) {
                 showHideInterface.hide(p);
                 continue;
@@ -53,8 +49,10 @@ public class CheckPlayers extends BukkitRunnable {
             }
 
             Jammer j = jamPair.getSecondValue();
+            int slot = jamPair.getFirstValue();
+            ItemStack uncharge = inv.getItem(slot);
 
-            if (j.removeItemCharge(inv.getItem(jamPair.getFirstValue()), ConfigStorage.COST)) {
+            if (j.removeItemCharge(uncharge, ConfigStorage.COST)) {
                 showHideInterface.hide(p);
             }
 
@@ -80,10 +78,12 @@ public class CheckPlayers extends BukkitRunnable {
         for (int i = 0; i < pi.getSize(); i++) {
             ItemStack item = pi.getItem(i);
 
+            //If empty skip
             if (item == null)
                 continue;
 
-            if (item.getType() != Items.JAMMER.getType())
+            //All jammers are compasses
+            if (item.getType() != Material.COMPASS)
                 continue;
 
             Jammer j = getJammer(item);
@@ -94,6 +94,7 @@ public class CheckPlayers extends BukkitRunnable {
             return new Pair<>(i, j);
         }
 
+        //Invalidate cache
         playerMap.put(playerName, null);
         return null;
     }
