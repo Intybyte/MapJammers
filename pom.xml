@@ -89,7 +89,7 @@
       </dependency>
       <dependency>
           <groupId>us.dynmap</groupId>
-          <artifactId>dynmap-api</artifactId>
+          <artifactId>DynmapCoreAPI</artifactId>
           <version>3.6</version>
           <scope>provided</scope>
       </dependency>

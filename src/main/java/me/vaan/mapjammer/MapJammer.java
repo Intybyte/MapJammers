@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.dynmap.DynmapAPI;
+import org.dynmap.DynmapCommonAPI;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.jpenilla.squaremap.api.PlayerManager;
@@ -63,17 +63,17 @@ public final class MapJammer extends JavaPlugin implements SlimefunAddon {
 
         Plugin dynmap = pm.getPlugin("dynmap");
         if (dynmap != null && dynmap.isEnabled()) {
-            DynmapAPI dynmapAPI = (DynmapAPI) dynmap;
+            DynmapCommonAPI dynmapAPI = (DynmapCommonAPI) dynmap;
 
             ShowHideInterface showHideInterface = new ShowHideInterface() {
                 @Override
                 public void show(Player p) {
-                    dynmapAPI.setPlayerVisiblity(p, true);
+                    dynmapAPI.setPlayerVisiblity(p.getName(), true);
                 }
 
                 @Override
                 public void hide(Player p) {
-                    dynmapAPI.setPlayerVisiblity(p, false);
+                    dynmapAPI.setPlayerVisiblity(p.getName(), false);
                 }
             };
 
