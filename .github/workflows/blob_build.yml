@@ -25,7 +25,7 @@ jobs:
       - name: Upload to Blob Builds
         uses: WalshyDev/blob-builds/gh-action@main
         with:
-          project: MyProject
+          project: MapJammers
           apiToken: ${{ secrets.BLOB_BUILDS_API_TOKEN }}
           file: ./target/MapJammers.jar
           releaseNotes: ${{ github.event.head_commit.message }}
